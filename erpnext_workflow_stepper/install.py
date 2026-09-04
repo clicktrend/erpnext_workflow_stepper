@@ -9,33 +9,33 @@ from frappe.custom.doctype.custom_field.custom_field import create_custom_fields
 CUSTOM_FIELDS = {
 	"Workflow": [
 		{
-			"fieldname": "workflow_bar_section",
-			"label": "Workflow Bar",
+			"fieldname": "workflow_stepper_section",
+			"label": "Workflow Stepper",
 			"fieldtype": "Section Break",
 			"insert_after": "workflow_data",
 		},
 		{
-			"fieldname": "show_workflow_bar",
-			"label": "Show Workflow Bar on Form",
+			"fieldname": "show_workflow_stepper",
+			"label": "Show Workflow Stepper on Form",
 			"fieldtype": "Check",
 			"default": "1",
-			"insert_after": "workflow_bar_section",
+			"insert_after": "workflow_stepper_section",
 			"description": "Show the states of this workflow as a step bar above the form tabs.",
 		},
 		{
-			"fieldname": "workflow_bar_show_actions",
-			"label": "Show Actions in Workflow Bar",
+			"fieldname": "workflow_stepper_show_actions",
+			"label": "Show Actions in Workflow Stepper",
 			"fieldtype": "Check",
 			"default": "1",
-			"insert_after": "show_workflow_bar",
+			"insert_after": "show_workflow_stepper",
 			"description": "Render the transitions allowed for the current user as buttons next to the bar "
 			"(the Actions menu stays as it is).",
 		},
 	],
 	"Workflow Document State": [
 		{
-			"fieldname": "workflow_bar_step",
-			"label": "Step in Workflow Bar",
+			"fieldname": "workflow_stepper_step",
+			"label": "Step in Workflow Stepper",
 			"fieldtype": "Check",
 			"insert_after": "doc_status",
 			"in_list_view": 1,

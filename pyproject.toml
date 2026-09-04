@@ -1,5 +1,5 @@
 [project]
-name = "workflow_stepper"
+name = "erpnext_workflow_stepper"
 authors = [
     { name = "Yücel & Tirgil GbR", email = "mitgravur@gmail.com"}
 ]

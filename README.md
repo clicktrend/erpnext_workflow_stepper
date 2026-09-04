@@ -10,7 +10,7 @@ order workflows:
   as the *Actions* menu, which stays untouched),
 - light and dark mode, any doctype, no changes to Frappe core.
 
-![Workflow bar with a side state](docs/workflow-bar-side-state.png)
+![Workflow bar with a side state](docs/workflow-stepper-side-state.png)
 
 Stock Frappe shows only the current state as a pill in the form header and the allowed transitions
 in the *Actions* dropdown. This app adds the overview of where the document is on its way.
@@ -29,9 +29,9 @@ Installing the app adds three fields to the **Workflow** document:
 
 | Field | Where | Meaning |
 |---|---|---|
-| *Show Workflow Bar on Form* | Workflow | Master switch per workflow (default on). |
-| *Show Actions in Workflow Bar* | Workflow | Render the allowed transitions as buttons (default on). |
-| *Step in Workflow Bar* | Workflow → States rows | Tick the states that form the **main path**, in row order. |
+| *Show Workflow Stepper on Form* | Workflow | Master switch per workflow (default on). |
+| *Show Actions in Workflow Stepper* | Workflow | Render the allowed transitions as buttons (default on). |
+| *Step in Workflow Stepper* | Workflow → States rows | Tick the states that form the **main path**, in row order. |
 
 States that are not ticked are treated as side states: when a document is in one of them, the bar
 shows it as a branch hanging off the path state it is reached from (or returns to). If nothing is
@@ -48,8 +48,8 @@ Completed` and side states `Waiting for Payment`, `On Hold`, `Returned`, `Cancel
 
 ```bash
 cd $PATH_TO_YOUR_BENCH
-bench get-app https://github.com/<owner>/workflow_stepper --branch main
-bench --site <site> install-app workflow_stepper
+bench get-app https://github.com/clicktrend/erpnext_workflow_stepper
+bench --site <site> install-app erpnext_workflow_stepper
 ```
 
 Tested with Frappe v16 (the form tabs layout of v15 and v16; on v14 the bar is prepended to the

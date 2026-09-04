@@ -9,14 +9,14 @@
 //   frm.states.handle_workflow_action(t)      applies a transition like the Actions menu
 //
 // Configuration lives on the Workflow document (custom fields created by this app):
-//   show_workflow_bar            master switch (default on)
-//   workflow_bar_show_actions    render allowed transitions as buttons (default on)
-//   states[].workflow_bar_step   tick the states that form the main path, in row order;
+//   show_workflow_stepper            master switch (default on)
+//   workflow_stepper_show_actions    render allowed transitions as buttons (default on)
+//   states[].workflow_stepper_step   tick the states that form the main path, in row order;
 //                                nothing ticked = all states except cancelled ones
 
-frappe.provide("workflow_stepper");
+frappe.provide("erpnext_workflow_stepper");
 
-workflow_stepper.STYLE_TO_COLOUR = {
+erpnext_workflow_stepper.STYLE_TO_COLOUR = {
 	Success: "green",
 	Warning: "orange",
 	Danger: "red",
@@ -25,27 +25,27 @@ workflow_stepper.STYLE_TO_COLOUR = {
 	Info: "blue",
 };
 
-workflow_stepper.get_workflow = function (doctype) {
+erpnext_workflow_stepper.get_workflow = function (doctype) {
 	if (!frappe.workflow.get_state_fieldname(doctype)) return null;
 	return frappe.workflow.workflows[doctype] || null;
 };
 
 // Main path: the ticked states in row order, or every non-cancelled state as a fallback.
-workflow_stepper.get_path = function (wf) {
-	const ticked = (wf.states || []).filter((s) => cint(s.workflow_bar_step)).map((s) => s.state);
+erpnext_workflow_stepper.get_path = function (wf) {
+	const ticked = (wf.states || []).filter((s) => cint(s.workflow_stepper_step)).map((s) => s.state);
 	if (ticked.length) return ticked;
 	return (wf.states || []).filter((s) => cint(s.doc_status) !== 2).map((s) => s.state);
 };
 
-workflow_stepper.colour_of = function (state) {
+erpnext_workflow_stepper.colour_of = function (state) {
 	const ws = locals["Workflow State"] && locals["Workflow State"][state];
-	return (ws && workflow_stepper.STYLE_TO_COLOUR[ws.style]) || "gray";
+	return (ws && erpnext_workflow_stepper.STYLE_TO_COLOUR[ws.style]) || "gray";
 };
 
 // Where does a side state hang off the main path? Prefer the earliest path state that
 // transitions INTO it, otherwise the earliest path state it transitions BACK to.
 // undefined = no relation to the path (e.g. a cancelled state written by automation).
-workflow_stepper.anchor_index = function (wf, path, state) {
+erpnext_workflow_stepper.anchor_index = function (wf, path, state) {
 	const first = (list) => list.filter((i) => i >= 0).sort((a, b) => a - b)[0];
 	const transitions = wf.transitions || [];
 	const into = transitions.filter((t) => t.next_state === state).map((t) => path.indexOf(t.state));
@@ -54,7 +54,7 @@ workflow_stepper.anchor_index = function (wf, path, state) {
 	return i !== undefined ? i : first(back);
 };
 
-workflow_stepper.has_approval_access = function (frm, transition) {
+erpnext_workflow_stepper.has_approval_access = function (frm, transition) {
 	return (
 		frappe.session.user === "Administrator" ||
 		transition.allow_self_approval ||
@@ -62,14 +62,14 @@ workflow_stepper.has_approval_access = function (frm, transition) {
 	);
 };
 
-workflow_stepper.render = function (frm) {
+erpnext_workflow_stepper.render = function (frm) {
 	frm.$wrapper.find(".workflow-stepper-wrapper").remove();
 	if (frm.is_new()) return;
 
-	const wf = workflow_stepper.get_workflow(frm.doctype);
-	if (!wf || cint(wf.show_workflow_bar === undefined ? 1 : wf.show_workflow_bar) === 0) return;
+	const wf = erpnext_workflow_stepper.get_workflow(frm.doctype);
+	if (!wf || cint(wf.show_workflow_stepper === undefined ? 1 : wf.show_workflow_stepper) === 0) return;
 
-	const path = workflow_stepper.get_path(wf);
+	const path = erpnext_workflow_stepper.get_path(wf);
 	if (!path.length) return;
 
 	const current = frm.doc[wf.workflow_state_field];
@@ -77,9 +77,9 @@ workflow_stepper.render = function (frm) {
 	let pos = path.indexOf(current);
 	let branch = "";
 	if (pos === -1 && current) {
-		const a = workflow_stepper.anchor_index(wf, path, current);
+		const a = erpnext_workflow_stepper.anchor_index(wf, path, current);
 		pos = a === undefined ? -1 : a;
-		branch = `<span class="ws-branch ws-${workflow_stepper.colour_of(current)}" title="${esc(__("Current state, off the main path"))}">${esc(__(current))}</span>`;
+		branch = `<span class="ws-branch ws-${erpnext_workflow_stepper.colour_of(current)}" title="${esc(__("Current state, off the main path"))}">${esc(__(current))}</span>`;
 	}
 
 	const steps = path
@@ -87,8 +87,8 @@ workflow_stepper.render = function (frm) {
 			let cls = i < pos ? "done" : "";
 			if (i === pos) {
 				cls = branch
-					? `anchor ws-${workflow_stepper.colour_of(current)}`
-					: `current ws-${workflow_stepper.colour_of(state)}`;
+					? `anchor ws-${erpnext_workflow_stepper.colour_of(current)}`
+					: `current ws-${erpnext_workflow_stepper.colour_of(state)}`;
 			}
 			const check = i < pos ? `<span class="ws-check">&#10003;</span>` : "";
 			const chip = i === pos && branch ? branch : "";
@@ -112,15 +112,15 @@ workflow_stepper.render = function (frm) {
 
 	// Allowed transitions as buttons — same filter and same handler as the Actions menu.
 	// Frappe hides the menu while the form is dirty; so do we.
-	const show_actions = wf.workflow_bar_show_actions === undefined ? 1 : cint(wf.workflow_bar_show_actions);
+	const show_actions = wf.workflow_stepper_show_actions === undefined ? 1 : cint(wf.workflow_stepper_show_actions);
 	if (!show_actions || frm.doc.__unsaved === 1) return;
 
 	frappe.workflow.get_transitions(frm.doc).then((transitions) => {
 		const $actions = $bar.find(".ws-actions");
 		transitions
-			.filter((t) => frappe.user_roles.includes(t.allowed) && workflow_stepper.has_approval_access(frm, t))
+			.filter((t) => frappe.user_roles.includes(t.allowed) && erpnext_workflow_stepper.has_approval_access(frm, t))
 			.forEach((t) => {
-				const colour = workflow_stepper.colour_of(t.next_state);
+				const colour = erpnext_workflow_stepper.colour_of(t.next_state);
 				$(`<button class="btn btn-xs btn-default"><span class="ws-dot ws-${colour}"></span>${esc(__(t.action))}</button>`)
 					.appendTo($actions)
 					.on("click", () => {
@@ -138,6 +138,6 @@ workflow_stepper.render = function (frm) {
 
 frappe.ui.form.on("*", {
 	refresh(frm) {
-		workflow_stepper.render(frm);
+		erpnext_workflow_stepper.render(frm);
 	},
 });

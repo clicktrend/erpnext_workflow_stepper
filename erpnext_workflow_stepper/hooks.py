@@ -1,4 +1,4 @@
-app_name = "workflow_stepper"
+app_name = "erpnext_workflow_stepper"
 app_title = "Workflow Stepper"
 app_publisher = "Yücel & Tirgil GbR"
 app_description = "Shows a Frappe workflow as a step bar with the allowed actions on top of the form, the way Marello and OroCommerce visualise their order workflows."
@@ -13,11 +13,11 @@ app_license = "mit"
 # Each item in the list will be shown as an app in the apps page
 # add_to_apps_screen = [
 # 	{
-# 		"name": "workflow_stepper",
-# 		"logo": "/assets/workflow_stepper/logo.png",
+# 		"name": "erpnext_workflow_stepper",
+# 		"logo": "/assets/erpnext_workflow_stepper/logo.png",
 # 		"title": "Workflow Stepper",
-# 		"route": "/workflow_stepper",
-# 		"has_permission": "workflow_stepper.api.permission.has_app_permission"
+# 		"route": "/erpnext_workflow_stepper",
+# 		"has_permission": "erpnext_workflow_stepper.api.permission.has_app_permission"
 # 	}
 # ]
 
@@ -25,15 +25,15 @@ app_license = "mit"
 # ------------------
 
 # include js, css files in header of desk.html
-app_include_css = "workflow_stepper.bundle.css"
-app_include_js = "workflow_stepper.bundle.js"
+app_include_css = "erpnext_workflow_stepper.bundle.css"
+app_include_js = "erpnext_workflow_stepper.bundle.js"
 
 # include js, css files in header of web template
-# web_include_css = "/assets/workflow_stepper/css/workflow_stepper.css"
-# web_include_js = "/assets/workflow_stepper/js/workflow_stepper.js"
+# web_include_css = "/assets/erpnext_workflow_stepper/css/erpnext_workflow_stepper.css"
+# web_include_js = "/assets/erpnext_workflow_stepper/js/erpnext_workflow_stepper.js"
 
 # include custom scss in every website theme (without file extension ".scss")
-# website_theme_scss = "workflow_stepper/public/scss/website"
+# website_theme_scss = "erpnext_workflow_stepper/public/scss/website"
 
 # include js, css files in header of web form
 # webform_include_js = {"doctype": "public/js/doctype.js"}
@@ -51,7 +51,7 @@ app_include_js = "workflow_stepper.bundle.js"
 # Svg Icons
 # ------------------
 # include app icons in desk
-# app_include_icons = "workflow_stepper/public/icons.svg"
+# app_include_icons = "erpnext_workflow_stepper/public/icons.svg"
 
 # Home Pages
 # ----------
@@ -78,50 +78,50 @@ app_include_js = "workflow_stepper.bundle.js"
 
 # add methods and filters to jinja environment
 # jinja = {
-# 	"methods": "workflow_stepper.utils.jinja_methods",
-# 	"filters": "workflow_stepper.utils.jinja_filters"
+# 	"methods": "erpnext_workflow_stepper.utils.jinja_methods",
+# 	"filters": "erpnext_workflow_stepper.utils.jinja_filters"
 # }
 
 # Installation
 # ------------
 
-# before_install = "workflow_stepper.install.before_install"
-after_install = "workflow_stepper.install.after_install"
-after_migrate = "workflow_stepper.install.after_migrate"
+# before_install = "erpnext_workflow_stepper.install.before_install"
+after_install = "erpnext_workflow_stepper.install.after_install"
+after_migrate = "erpnext_workflow_stepper.install.after_migrate"
 
 # Uninstallation
 # ------------
 
-before_uninstall = "workflow_stepper.install.before_uninstall"
-# after_uninstall = "workflow_stepper.uninstall.after_uninstall"
+before_uninstall = "erpnext_workflow_stepper.install.before_uninstall"
+# after_uninstall = "erpnext_workflow_stepper.uninstall.after_uninstall"
 
 # Integration Setup
 # ------------------
 # To set up dependencies/integrations with other apps
 # Name of the app being installed is passed as an argument
 
-# before_app_install = "workflow_stepper.utils.before_app_install"
-# after_app_install = "workflow_stepper.utils.after_app_install"
+# before_app_install = "erpnext_workflow_stepper.utils.before_app_install"
+# after_app_install = "erpnext_workflow_stepper.utils.after_app_install"
 
 # Integration Cleanup
 # -------------------
 # To clean up dependencies/integrations with other apps
 # Name of the app being uninstalled is passed as an argument
 
-# before_app_uninstall = "workflow_stepper.utils.before_app_uninstall"
-# after_app_uninstall = "workflow_stepper.utils.after_app_uninstall"
+# before_app_uninstall = "erpnext_workflow_stepper.utils.before_app_uninstall"
+# after_app_uninstall = "erpnext_workflow_stepper.utils.after_app_uninstall"
 
 # Build
 # ------------------
 # To hook into the build process
 
-# after_build = "workflow_stepper.build.after_build"
+# after_build = "erpnext_workflow_stepper.build.after_build"
 
 # Desk Notifications
 # ------------------
 # See frappe.core.notifications.get_notification_config
 
-# notification_config = "workflow_stepper.notifications.get_notification_config"
+# notification_config = "erpnext_workflow_stepper.notifications.get_notification_config"
 
 # Permissions
 # -----------
@@ -152,47 +152,47 @@ before_uninstall = "workflow_stepper.install.before_uninstall"
 
 # scheduler_events = {
 # 	"all": [
-# 		"workflow_stepper.tasks.all"
+# 		"erpnext_workflow_stepper.tasks.all"
 # 	],
 # 	"daily": [
-# 		"workflow_stepper.tasks.daily"
+# 		"erpnext_workflow_stepper.tasks.daily"
 # 	],
 # 	"hourly": [
-# 		"workflow_stepper.tasks.hourly"
+# 		"erpnext_workflow_stepper.tasks.hourly"
 # 	],
 # 	"weekly": [
-# 		"workflow_stepper.tasks.weekly"
+# 		"erpnext_workflow_stepper.tasks.weekly"
 # 	],
 # 	"monthly": [
-# 		"workflow_stepper.tasks.monthly"
+# 		"erpnext_workflow_stepper.tasks.monthly"
 # 	],
 # }
 
 # Testing
 # -------
 
-# before_tests = "workflow_stepper.install.before_tests"
+# before_tests = "erpnext_workflow_stepper.install.before_tests"
 
 # Extend DocType Class
 # ------------------------------
 #
 # Specify custom mixins to extend the standard doctype controller.
 # extend_doctype_class = {
-# 	"Task": "workflow_stepper.custom.task.CustomTaskMixin"
+# 	"Task": "erpnext_workflow_stepper.custom.task.CustomTaskMixin"
 # }
 
 # Overriding Methods
 # ------------------------------
 #
 # override_whitelisted_methods = {
-# 	"frappe.desk.doctype.event.event.get_events": "workflow_stepper.event.get_events"
+# 	"frappe.desk.doctype.event.event.get_events": "erpnext_workflow_stepper.event.get_events"
 # }
 #
 # each overriding function accepts a `data` argument;
 # generated from the base implementation of the doctype dashboard,
 # along with any modifications made in other Frappe apps
 # override_doctype_dashboards = {
-# 	"Task": "workflow_stepper.task.get_dashboard_data"
+# 	"Task": "erpnext_workflow_stepper.task.get_dashboard_data"
 # }
 
 # exempt linked doctypes from being automatically cancelled
@@ -206,13 +206,13 @@ before_uninstall = "workflow_stepper.install.before_uninstall"
 
 # Request Events
 # ----------------
-# before_request = ["workflow_stepper.utils.before_request"]
-# after_request = ["workflow_stepper.utils.after_request"]
+# before_request = ["erpnext_workflow_stepper.utils.before_request"]
+# after_request = ["erpnext_workflow_stepper.utils.after_request"]
 
 # Job Events
 # ----------
-# before_job = ["workflow_stepper.utils.before_job"]
-# after_job = ["workflow_stepper.utils.after_job"]
+# before_job = ["erpnext_workflow_stepper.utils.before_job"]
+# after_job = ["erpnext_workflow_stepper.utils.after_job"]
 
 # User Data Protection
 # --------------------
@@ -242,7 +242,7 @@ before_uninstall = "workflow_stepper.install.before_uninstall"
 # --------------------------------
 
 # auth_hooks = [
-# 	"workflow_stepper.auth.validate"
+# 	"erpnext_workflow_stepper.auth.validate"
 # ]
 
 # Automatically update python controller files with type annotations for this app.
