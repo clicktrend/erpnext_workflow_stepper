@@ -25,8 +25,8 @@ app_license = "mit"
 # ------------------
 
 # include js, css files in header of desk.html
-# app_include_css = "/assets/workflow_stepper/css/workflow_stepper.css"
-# app_include_js = "/assets/workflow_stepper/js/workflow_stepper.js"
+app_include_css = "workflow_stepper.bundle.css"
+app_include_js = "workflow_stepper.bundle.js"
 
 # include js, css files in header of web template
 # web_include_css = "/assets/workflow_stepper/css/workflow_stepper.css"
@@ -86,12 +86,13 @@ app_license = "mit"
 # ------------
 
 # before_install = "workflow_stepper.install.before_install"
-# after_install = "workflow_stepper.install.after_install"
+after_install = "workflow_stepper.install.after_install"
+after_migrate = "workflow_stepper.install.after_migrate"
 
 # Uninstallation
 # ------------
 
-# before_uninstall = "workflow_stepper.uninstall.before_uninstall"
+before_uninstall = "workflow_stepper.install.before_uninstall"
 # after_uninstall = "workflow_stepper.uninstall.after_uninstall"
 
 # Integration Setup

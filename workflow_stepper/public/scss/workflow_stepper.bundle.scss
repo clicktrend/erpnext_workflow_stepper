@@ -1,0 +1,113 @@
+// Workflow Stepper — step bar above the form tabs. Colours come from Frappe's design tokens,
+// so light and dark mode both work.
+$ws-arrow: 12px;
+
+.workflow-stepper-wrapper {
+	padding: 10px var(--padding-md) 8px;
+	border-bottom: 1px solid var(--border-color);
+	background: var(--card-bg);
+}
+
+.workflow-stepper {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 6px 0;
+
+	.ws-steps {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+	}
+
+	.ws-step {
+		position: relative;
+		display: inline-flex;
+		align-items: center;
+		height: 30px;
+		padding: 0 18px 0 24px;
+		margin-left: -8px;
+		font-size: var(--text-sm);
+		white-space: nowrap;
+		background: var(--bg-gray);
+		color: var(--text-muted);
+		clip-path: polygon(0 0, calc(100% - #{$ws-arrow}) 0, 100% 50%, calc(100% - #{$ws-arrow}) 100%, 0 100%, #{$ws-arrow} 50%);
+
+		&:first-child {
+			margin-left: 0;
+			padding-left: 14px;
+			border-radius: var(--border-radius) 0 0 var(--border-radius);
+			clip-path: polygon(0 0, calc(100% - #{$ws-arrow}) 0, 100% 50%, calc(100% - #{$ws-arrow}) 100%, 0 100%);
+		}
+
+		&.done {
+			background: var(--bg-green);
+			color: var(--text-on-green);
+		}
+		&.current {
+			font-weight: 600;
+		}
+		&.anchor {
+			font-weight: 500;
+		}
+
+		.ws-check {
+			margin-right: 5px;
+			font-size: 11px;
+		}
+	}
+
+	.ws-branch {
+		display: inline-flex;
+		align-items: center;
+		height: 26px;
+		margin: 0 4px 0 8px;
+		padding: 0 10px;
+		border-radius: 13px;
+		font-size: var(--text-sm);
+		font-weight: 600;
+
+		&::before {
+			content: "\21B3";
+			margin-right: 6px;
+			font-weight: 400;
+		}
+	}
+
+	.ws-actions {
+		display: inline-flex;
+		flex-wrap: wrap;
+		gap: 6px;
+		margin-left: auto;
+		padding-left: 12px;
+
+		.btn {
+			height: 28px;
+			display: inline-flex;
+			align-items: center;
+		}
+	}
+
+	.ws-dot {
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		margin-right: 6px;
+		background: var(--gray-400);
+
+		&.ws-blue { background: var(--blue-500); }
+		&.ws-green { background: var(--green-500); }
+		&.ws-orange { background: var(--orange-500); }
+		&.ws-red { background: var(--red-500); }
+		&.ws-gray { background: var(--gray-500); }
+	}
+
+	.ws-step,
+	.ws-branch {
+		&.ws-blue { background: var(--bg-blue); color: var(--text-on-blue); }
+		&.ws-green { background: var(--bg-green); color: var(--text-on-green); }
+		&.ws-orange { background: var(--bg-orange); color: var(--text-on-orange); }
+		&.ws-red { background: var(--bg-red); color: var(--text-on-red); }
+		&.ws-gray { background: var(--bg-gray); color: var(--text-on-gray); }
+	}
+}
