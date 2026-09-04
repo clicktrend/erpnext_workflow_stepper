@@ -4,7 +4,7 @@ authors = [
     { name = "Yücel & Tirgil GbR", email = "mitgravur@gmail.com"}
 ]
 description = "Shows a Frappe workflow as a step bar with the allowed actions on top of the form, the way Marello and OroCommerce visualise their order workflows."
-requires-python = ">=3.14"
+requires-python = ">=3.10"
 readme = "README.md"
 dynamic = ["version"]
 dependencies = [
