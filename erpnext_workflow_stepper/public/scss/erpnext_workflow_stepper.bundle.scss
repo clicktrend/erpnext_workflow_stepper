@@ -31,13 +31,26 @@ $ws-arrow: 12px;
 		white-space: nowrap;
 		background: var(--bg-gray);
 		color: var(--text-muted);
-		clip-path: polygon(0 0, calc(100% - #{$ws-arrow}) 0, 100% 50%, calc(100% - #{$ws-arrow}) 100%, 0 100%, #{$ws-arrow} 50%);
+		clip-path: polygon(
+			0 0,
+			calc(100% - #{$ws-arrow}) 0,
+			100% 50%,
+			calc(100% - #{$ws-arrow}) 100%,
+			0 100%,
+			#{$ws-arrow} 50%
+		);
 
 		&:first-child {
 			margin-left: 0;
 			padding-left: 14px;
 			border-radius: var(--border-radius) 0 0 var(--border-radius);
-			clip-path: polygon(0 0, calc(100% - #{$ws-arrow}) 0, 100% 50%, calc(100% - #{$ws-arrow}) 100%, 0 100%);
+			clip-path: polygon(
+				0 0,
+				calc(100% - #{$ws-arrow}) 0,
+				100% 50%,
+				calc(100% - #{$ws-arrow}) 100%,
+				0 100%
+			);
 		}
 
 		&.done {
@@ -95,19 +108,44 @@ $ws-arrow: 12px;
 		margin-right: 6px;
 		background: var(--gray-400);
 
-		&.ws-blue { background: var(--blue-500); }
-		&.ws-green { background: var(--green-500); }
-		&.ws-orange { background: var(--orange-500); }
-		&.ws-red { background: var(--red-500); }
-		&.ws-gray { background: var(--gray-500); }
+		&.ws-blue {
+			background: var(--blue-500);
+		}
+		&.ws-green {
+			background: var(--green-500);
+		}
+		&.ws-orange {
+			background: var(--orange-500);
+		}
+		&.ws-red {
+			background: var(--red-500);
+		}
+		&.ws-gray {
+			background: var(--gray-500);
+		}
 	}
 
 	.ws-step,
 	.ws-branch {
-		&.ws-blue { background: var(--bg-blue); color: var(--text-on-blue); }
-		&.ws-green { background: var(--bg-green); color: var(--text-on-green); }
-		&.ws-orange { background: var(--bg-orange); color: var(--text-on-orange); }
-		&.ws-red { background: var(--bg-red); color: var(--text-on-red); }
-		&.ws-gray { background: var(--bg-gray); color: var(--text-on-gray); }
+		&.ws-blue {
+			background: var(--bg-blue);
+			color: var(--text-on-blue);
+		}
+		&.ws-green {
+			background: var(--bg-green);
+			color: var(--text-on-green);
+		}
+		&.ws-orange {
+			background: var(--bg-orange);
+			color: var(--text-on-orange);
+		}
+		&.ws-red {
+			background: var(--bg-red);
+			color: var(--text-on-red);
+		}
+		&.ws-gray {
+			background: var(--bg-gray);
+			color: var(--text-on-gray);
+		}
 	}
 }
