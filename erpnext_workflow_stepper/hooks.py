@@ -2,7 +2,7 @@ app_name = "erpnext_workflow_stepper"
 app_title = "Workflow Stepper"
 app_publisher = "Yücel & Tirgil GbR"
 app_description = "Shows a Frappe workflow as a step bar with the allowed actions on top of the form, the way Marello and OroCommerce visualise their order workflows."
-app_email = "mitgravur@gmail.com"
+app_email = "ky@clicktrend.de"
 app_license = "mit"
 
 # Apps
@@ -256,4 +256,3 @@ before_uninstall = "erpnext_workflow_stepper.install.before_uninstall"
 # ------------
 # List of apps whose translatable strings should be excluded from this app's translations.
 # ignore_translatable_strings_from = []
-

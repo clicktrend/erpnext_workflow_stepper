@@ -52,13 +52,12 @@ bench get-app https://github.com/clicktrend/erpnext_workflow_stepper
 bench --site <site> install-app erpnext_workflow_stepper
 ```
 
-Tested with Frappe v16 (the form tabs layout of v15 and v16; on v14 the bar is prepended to the
-form page instead).
+Requires Frappe v16. Older versions are not tested.
 
 ## Compatibility notes
 
 - The bar mounts above `.form-tabs-list`, so it is visible on every tab. It deliberately does not
-  use `frm.dashboard.add_section`, which lands inside the *Connections* tab in v15/v16.
+  use `frm.dashboard.add_section`, which lands inside the *Connections* tab.
 - A form that is dirty (unsaved changes) shows the bar without buttons, mirroring Frappe hiding the
   *Actions* menu in that case.
 - Custom fields are re-asserted on every `bench migrate` and removed on uninstall.

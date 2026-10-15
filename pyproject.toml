@@ -1,7 +1,7 @@
 [project]
 name = "erpnext_workflow_stepper"
 authors = [
-    { name = "Yücel & Tirgil GbR", email = "mitgravur@gmail.com"}
+    { name = "Yücel & Tirgil GbR", email = "ky@clicktrend.de"}
 ]
 description = "Shows a Frappe workflow as a step bar with the allowed actions on top of the form, the way Marello and OroCommerce visualise their order workflows."
 requires-python = ">=3.10"
@@ -25,7 +25,7 @@ packages = []
 
 [tool.ruff]
 line-length = 110
-target-version = "py314"
+target-version = "py310"
 
 [tool.ruff.lint]
 select = [

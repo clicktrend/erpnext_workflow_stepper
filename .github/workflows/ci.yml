@@ -1,0 +1,81 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: Linters
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.14'
+          cache: pip
+      - uses: pre-commit/action@v3.0.0
+
+  install:
+    name: Install on Frappe v16
+    runs-on: ubuntu-latest
+
+    services:
+      redis-cache:
+        image: redis:alpine
+        ports:
+          - 13000:6379
+      redis-queue:
+        image: redis:alpine
+        ports:
+          - 11000:6379
+      mariadb:
+        image: mariadb:11.8
+        env:
+          MYSQL_ROOT_PASSWORD: root
+        ports:
+          - 3306:3306
+        options: --health-cmd="healthcheck.sh --connect --innodb_initialized" --health-interval=5s --health-timeout=2s --health-retries=3
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.14'
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - name: Install MariaDB client
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y mariadb-client
+
+      - name: Set up bench
+        run: |
+          pip install frappe-bench
+          bench init --frappe-branch version-16 --skip-redis-config-generation --skip-assets --python "$(which python)" ~/frappe-bench
+
+      - name: Install app, migrate, uninstall
+        working-directory: /home/runner/frappe-bench
+        run: |
+          bench get-app erpnext_workflow_stepper $GITHUB_WORKSPACE
+          bench new-site --db-root-password root --admin-password admin test_site
+          bench --site test_site install-app erpnext_workflow_stepper
+          bench --site test_site migrate
+          bench build --app erpnext_workflow_stepper
+          bench --site test_site uninstall-app erpnext_workflow_stepper --yes --no-backup
+        env:
+          CI: 'Yes'
